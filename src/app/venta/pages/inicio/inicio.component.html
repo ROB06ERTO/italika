@@ -1,0 +1,22 @@
+<div >
+    <h1>Motos Italika</h1>
+    <hr>
+    <p>Somos una tienda de motos con los mejores precios.</p>
+     
+    
+</div>
+
+<p-scrollPanel [style]="{width: '350px', height: '500px'}">
+<div class="grid bg-dark " id="id">
+    <div *ngFor="let moto of listMoto" class="col-4">
+        <p-card [header]="moto.modelo |uppercase " [style]="{'width': '20rem', 'margin-bottom': '2em'}">
+            {{moto.version |uppercase}}
+            <ng-template pTemplate="header">
+                <img (click)="fotoBoton(moto)" style="cursor:pointer" alt="Card" src="http://localhost:9929/moto/uploads/{{moto.imagen}}">
+            </ng-template>
+            <p>{{moto.descripcion|uppercase}} </p>
+        </p-card>
+    </div>
+
+</div>  
+</p-scrollPanel>

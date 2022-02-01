@@ -1,0 +1,55 @@
+<hr>
+"<div *ngIf="moto!=undefined "  class="p-d-flex p-jc-center" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="gappx">
+    <h1 style="color:#6a32d3">{{moto.modelo|uppercase}}</h1>
+</div>
+
+
+<div *ngIf="moto!=undefined && costos!=undefined" class="p-d-flex p-jc-center ">
+   
+<p-card [style]="{width: '500px'}" styleClass="p-card-shadow">
+    <ng-template pTemplate="header">
+        <p-image alt="Card" src="http://localhost:9929/moto/uploads/{{moto.imagen}}" alt="Image"  width="50" ></p-image>
+       
+    </ng-template>
+    <div  class="col col-5" [style]="{width: '400px'}">
+      <div class="card " id="id">
+            <h4>Costos</h4>
+            <p-tabView>
+                <p-tabPanel header="Especificación" >
+                    <h5>Año Presente {{date|date: 'dd/MM/yyyy'}}</h5>
+                    <hr>
+                    <li>Modelo: {{moto.modelo}}</li>    
+                    <li>Versió: {{moto.version}}</li>
+        
+                </p-tabPanel>
+                <p-tabPanel header="Costos">
+                    <h5>Costos moto </h5>
+                    <hr>
+                    <li>Precio moto sin iva: {{moto.costo| currency:'USD':true:'1.2-2'}}  </li>
+                    <li> Iva con el {{costos.iva|percent}}: {{(moto.costo*costos.iva) |currency:'USD':true:'1.2-2'}}  </li>
+                    <li>Gastos admin: {{costos.administrativos |currency:'USD':true:'1.2-2'}}</li>
+                    <li>Accesorios: {{costos.accsesorios |currency:'USD':true:'1.2-2'}} </li>
+                    <li>seguro vehiculo: {{costos.seguro |currency:'USD':true:'1.2-2'}} </li>
+                </p-tabPanel>
+                <p-tabPanel header="Total a pagar" >
+                    <hr>
+                    <li>Enganche: {{costos.enganche|percent}} valor de moto : {{(moto.costo*costos.enganche |currency:'USD':true:'1.2-2')}}</li>
+                    <li>Total: {{getTotal() |currency:'USD':true:'1.2-2'}}</li>
+                    </p-tabPanel>
+            </p-tabView>
+        </div>
+        </div>
+    
+    <ng-template Class="p-jc-center" pTemplate="footer">
+        <div class="p-d-flex p-jc-center">
+        <p-button (click)="prestamo()" label="Prestamo" icon="pi pi-check"></p-button>
+      </div>
+    </ng-template>
+  
+</p-card>
+</div>
+
+
+
+
+
